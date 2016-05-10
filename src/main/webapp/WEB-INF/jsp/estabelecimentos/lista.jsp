@@ -24,7 +24,7 @@
 			<input type="submit" value="Adicionar" />
 		</form>
 
-		<table id="lista" cellpadding="0" cellspacing="0" width="100%">
+		<table id="lista" cellspacing="0" width="100%">
 			<caption>Lista de estabelecimentos</caption>
 			<colgroup>
 				<col width="5%">
