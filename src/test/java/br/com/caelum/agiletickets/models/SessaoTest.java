@@ -30,6 +30,13 @@ public class SessaoTest {
 	}
 
 	@Test
+	public void deveVender1ingressoSeHa1Vaga()throws Exception{
+		Sessao sessao = new Sessao();
+		sessao.setTotalIngressos(1);
+		Assert.assertTrue(sessao.podeReservar(1));
+	}
+	
+	@Test
 	public void reservarIngressosDeveDiminuirONumeroDeIngressosDisponiveis() throws Exception {
 		Sessao sessao = new Sessao();
 		sessao.setTotalIngressos(5);
