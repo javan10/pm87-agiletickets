@@ -5,8 +5,6 @@ import java.math.BigDecimal;
 
 public enum TipoDeEspetaculo {
 	
-	
-	
 	CINEMA{
 		public BigDecimal calculaPreco(Sessao sessao){
 			return CalculaPrecoPorcentagem(CINCO_PORCENTO, DEZ_PORCENTO,sessao);
@@ -21,7 +19,7 @@ public enum TipoDeEspetaculo {
 	BALLET{
 		public BigDecimal calculaPreco(Sessao sessao){
 			BigDecimal valorPrecoPorcentagem = CalculaPrecoPorcentagem(CINQUENTA_PORCENTO, VINTE_PORCENTO,sessao);
-			return calculaAjustePelaDuracao(sessao, valorPrecoPorcentagem,DEZ_PORCENTO);
+			return calculaAjustePelaDuracao(sessao, valorPrecoPorcentagem,DEZ_PORCENTO, UMA_HORA_EM_MINUTOS);
 		}
 	}, 
 	ORQUESTRA{
@@ -29,7 +27,7 @@ public enum TipoDeEspetaculo {
 		public BigDecimal calculaPreco(Sessao sessao){
 			BigDecimal valorPrecoPorcentagem = CalculaPrecoPorcentagem(CINQUENTA_PORCENTO, VINTE_PORCENTO,sessao);
 			
-			return calculaAjustePelaDuracao(sessao, valorPrecoPorcentagem,DEZ_PORCENTO);
+			return calculaAjustePelaDuracao(sessao, valorPrecoPorcentagem,DEZ_PORCENTO, UMA_HORA_EM_MINUTOS);
 		}
 		
 	};
@@ -41,7 +39,7 @@ public enum TipoDeEspetaculo {
 	private static final double DEZ_PORCENTO = 0.10;
 	private static final double CINCO_PORCENTO = 0.05;
 	private static final double CINQUENTA_PORCENTO = 0.50;
-	private static final double UMA_HORA_EM_MINUTOS = 60;
+	private static final Integer UMA_HORA_EM_MINUTOS = 60;
 	
 	public BigDecimal calculaPreco(Sessao sessao){
 		return sessao.getPreco();
@@ -63,8 +61,8 @@ public enum TipoDeEspetaculo {
 		return preco;
 	}
 
-	private static BigDecimal calculaAjustePelaDuracao(Sessao sessao,BigDecimal preco, double porcentagemAjuste) {
-		if(sessao.getDuracaoEmMinutos() > UMA_HORA_EM_MINUTOS){
+	private static BigDecimal calculaAjustePelaDuracao(Sessao sessao,BigDecimal preco, double porcentagemAjuste, Integer duracaoMinutos) {
+		if(sessao.getDuracaoEmMinutos() > duracaoMinutos){
 			preco = preco.add(sessao.getPreco().multiply(BigDecimal.valueOf(porcentagemAjuste)));
 		}
 		return preco;
