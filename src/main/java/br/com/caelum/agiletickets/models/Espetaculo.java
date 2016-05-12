@@ -99,15 +99,16 @@ public class Espetaculo {
      * Repare que a data da primeira sessao é sempre a data inicial.
      */
 	public List<Sessao> criaSessoes(LocalDate inicio, LocalDate fim, LocalTime horario, Periodicidade periodicidade) {
-
-		int quantidadeSessoes = periodicidade.calculaQuantidadeSessoes(inicio, fim);
-		for (int i=0;i<quantidadeSessoes;i++){
-			Sessao sessao = new Sessao();
-			sessao.setInicio(inicio.plusWeeks(i).toDateTime(horario));
-			sessao.setEspetaculo(this);
-			sessao.setDuracaoEmMinutos(60);
-			this.getSessoes().add(sessao);
-		}	
+		if(fim.isAfter(inicio) || inicio.equals(fim)){
+			int quantidadeSessoes = periodicidade.calculaQuantidadeSessoes(inicio, fim);
+			for (int i=0;i<quantidadeSessoes;i++){
+				Sessao sessao = new Sessao();
+				sessao.setInicio(periodicidade.somaData(inicio,i).toDateTime(horario));
+				sessao.setEspetaculo(this);
+				sessao.setDuracaoEmMinutos(60);
+				this.getSessoes().add(sessao);
+			}
+		}
 		return this.getSessoes();
 	}
 	
