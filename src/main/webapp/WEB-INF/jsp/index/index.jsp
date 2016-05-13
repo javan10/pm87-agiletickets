@@ -7,7 +7,7 @@
 		<ul id="sessoes">
 			<c:forEach items="${sessoes}" var="sessao">
 				<li>
-					<a href="<c:url value="/sessao/${sessao.id}"/>">
+					<a id="sessao-${sessao.id}" href="<c:url value="/sessao/${sessao.id}" />">
 						${sessao.dia} - ${sessao.espetaculo.nome} - Ingressos Disponíveis: ${sessao.ingressosDisponiveis}
 					</a>
 				</li>
