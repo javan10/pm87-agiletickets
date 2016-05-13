@@ -109,7 +109,8 @@ public class Espetaculo {
 				this.getSessoes().add(sessao);
 			}
 		}
-		return this.getSessoes();
+		//return this.getSessoes();
+		return null;
 	}
 	
 	public boolean Vagas(int qtd, int min)
